@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camper.controller.AutoCampersController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camper.controller.AutoCampersController">
    <left>
       <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -51,17 +51,7 @@
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="WC">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ChoiceBox fx:id="choiceWC" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
-                     <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
-                     </VBox.margin>
-                  </ChoiceBox>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Seats">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Min. Seats">
                      <VBox.margin>
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
@@ -71,12 +61,22 @@
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
-                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Sleeps">
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Min. Sleeps">
                      <VBox.margin>
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <ChoiceBox fx:id="choiceSleeps" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </ChoiceBox>
+                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="WC">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ChoiceBox fx:id="choiceWC" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
@@ -102,7 +102,7 @@
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="fldMinWidth" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
+                  <TextField fx:id="fldMinWidth" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="meters" text="0.0">
                      <VBox.margin>
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
@@ -112,7 +112,7 @@
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="fldMinHeight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
+                  <TextField fx:id="fldMinHeight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="meters" text="0.0">
                      <VBox.margin>
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
@@ -122,7 +122,7 @@
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="fldMinLength" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
+                  <TextField fx:id="fldMinLength" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="meters" text="0.0">
                      <VBox.margin>
                         <Insets bottom="5.0" left="25.0" right="25.0" />
                      </VBox.margin>
@@ -175,15 +175,17 @@
    <center>
       <TableView fx:id="viewTable" prefHeight="950.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colID" maxWidth="1000.0" minWidth="-Infinity" prefWidth="50.0" text="ID" />
-          <TableColumn fx:id="colSize" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" text="Size" />
-            <TableColumn fx:id="colPrice" maxWidth="1000.0" minWidth="-Infinity" prefWidth="150.0" text="Price" />
-            <TableColumn fx:id="colWC" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" text="WC" />
-            <TableColumn fx:id="colSeats" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" text="Seats" />
-            <TableColumn fx:id="colSleeps" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" text="Sleeps" />
-            <TableColumn fx:id="colKitchen" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" text="Kitchen" />
-            <TableColumn fx:id="colTransmission" maxWidth="1000.0" minWidth="-Infinity" prefWidth="150.0" text="Transmission" />
-            <TableColumn fx:id="colFuelType" maxWidth="1000.0" minWidth="-Infinity" prefWidth="150.0" text="Fuel Type" />
+          <TableColumn fx:id="colID" maxWidth="1000.0" minWidth="-Infinity" prefWidth="50.0" style="-fx-alignment: CENTER;" text="ID" />
+            <TableColumn fx:id="colPrice" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Price" />
+            <TableColumn fx:id="colSeats" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Seats" />
+            <TableColumn fx:id="colSleeps" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Sleeps" />
+            <TableColumn fx:id="colWC" maxWidth="1000.0" minWidth="-Infinity" prefWidth="75.0" style="-fx-alignment: CENTER;" text="WC" />
+            <TableColumn fx:id="colKitchen" maxWidth="1000.0" minWidth="-Infinity" prefWidth="75.0" style="-fx-alignment: CENTER;" text="Kitchen" />
+          <TableColumn fx:id="colWidth" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Width" />
+            <TableColumn fx:id="colHeight" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Height" />
+            <TableColumn fx:id="colLength" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Length" />
+            <TableColumn fx:id="colTransmission" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Transmission" />
+            <TableColumn fx:id="colFuelType" maxWidth="1000.0" minWidth="-Infinity" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Fuel Type" />
         </columns>
       </TableView>
    </center>

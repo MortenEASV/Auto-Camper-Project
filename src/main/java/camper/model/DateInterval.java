@@ -2,12 +2,12 @@ package camper.model;
 
 import java.time.LocalDate;
 
-public class Reservation {
+public class DateInterval {
     private final LocalDate from, to;
 
-    public Reservation(String from, String to) {
-        this.from = LocalDate.parse(from);
-        this.to = LocalDate.parse(to);
+    public DateInterval(LocalDate from, LocalDate to) {
+        this.from = from;
+        this.to = to;
     }
 
     public LocalDate getFrom() {
