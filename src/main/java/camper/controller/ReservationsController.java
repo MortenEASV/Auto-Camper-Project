@@ -1,8 +1,6 @@
 package camper.controller;
 
 import camper.Main;
-import camper.model.AutoCamper;
-import camper.model.DateInterval;
 import camper.model.Reservation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +32,7 @@ public class ReservationsController {
     Button btnApply;
 
     @FXML
-    TableView<Reservation> tableView = new TableView();
+    TableView<Reservation> viewTable = new TableView();
 
     @FXML
     TableColumn<Reservation, Integer> colReservationID;
@@ -76,10 +74,9 @@ public class ReservationsController {
         colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         colFrom.setCellValueFactory(new PropertyValueFactory<>("from"));
         colUntil.setCellValueFactory(new PropertyValueFactory<>("to"));
-        tableView.getColumns().addAll(colReservationID, colCustomerID, colCustomerName, colFrom, colUntil);
-        tableView.setItems(Main.reservations);
+        viewTable.setItems(Main.reservations);
 
-        tableView.getItems().forEach(System.out::println);
+        viewTable.getItems().forEach(System.out::println);
 
 
     }
