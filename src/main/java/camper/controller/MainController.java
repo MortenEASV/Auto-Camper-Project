@@ -1,7 +1,5 @@
 package camper.controller;
 
-import camper.Manager;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -9,28 +7,29 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
-public class MainController implements Controller {
-    private static final Manager manager = Manager.getInstance();
-
+public class MainController {
     @FXML
     BorderPane root;
 
     @FXML
     Button btnAutoCampers, btnCustomers, btnRentals, btnReports, btnReservations;
 
-    @FXML
-    public void initialize() {
-        btnAutoCampers.setUserData(Manager.FXML.AUTO_CAMPERS);
-        btnCustomers.setUserData(Manager.FXML.CUSTOMERS);
-        btnRentals.setUserData(Manager.FXML.RENTALS);
-        btnReports.setUserData(Manager.FXML.REPORTS);
-        btnReservations.setUserData(Manager.FXML.RESERVATIONS);
+    private BorderPane paneAutoCampers, paneCustomers, paneRentals, paneReports, paneReservations;
+
+    public MainController() throws IOException {
+        paneAutoCampers = FXMLLoader.load(getClass().getResource("../fxml/AutoCampers.fxml"));
+        paneCustomers = FXMLLoader.load(getClass().getResource("../fxml/Customers.fxml"));
+        // paneRentals = FXMLLoader.load(getClass().getResource("fxml/Rentals.fxml"));
+        // paneReports= FXMLLoader.load(getClass().getResource("fxml/Reports.fxml"));
+        paneReservations= FXMLLoader.load(getClass().getResource("../fxml/Reservations.fxml"));
     }
 
     @FXML
-    public void handleButtons(Event event) {
-        Button btn = (Button) event.getSource();
-
-        root.setCenter(manager.getRoot((Manager.FXML) btn.getUserData()));
+    public void initialize() {
+        btnAutoCampers.setOnAction(e -> root.setCenter(paneAutoCampers));
+        btnCustomers.setOnAction(e -> root.setCenter(paneCustomers));
+        // btnRentals.setOnAction(e -> root.setCenter(paneRentals));
+        // btnReports.setOnAction(e -> root.setCenter(paneReports));
+        btnReservations.setOnAction(e -> root.setCenter(paneReservations));
     }
 }

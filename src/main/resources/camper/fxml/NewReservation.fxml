@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camper.controller.NewReservationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camper.controller.NewReservationController">
    <left>
       <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -33,52 +33,52 @@
                   </DatePicker>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="To">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <DatePicker fx:id="dateTo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </DatePicker>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Price Category">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <ChoiceBox fx:id="choiceCategory" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="WC">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <ChoiceBox fx:id="choiceWC" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Seats">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <ChoiceBox fx:id="choiceSeats" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Sleeps">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <ChoiceBox fx:id="choiceSleeps" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Kitchen">
@@ -86,7 +86,7 @@
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <ChoiceBox fx:id="choiceKitchen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
@@ -94,57 +94,57 @@
                         <Insets />
                      </opaqueInsets>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Min. Width">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <TextField fx:id="fldMinWidth" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </TextField>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Min. Height">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <TextField fx:id="fldMinHeight" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </TextField>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Min. Length">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <TextField fx:id="fldMinLength" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </TextField>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Transmission">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <ChoiceBox fx:id="choiceTransmission" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
                   <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" text="Fuel Type">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </Label>
                   <ChoiceBox fx:id="choiceFuelType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" left="25.0" right="25.0" />
+                        <Insets bottom="2.5" left="25.0" right="25.0" />
                      </VBox.margin>
                   </ChoiceBox>
                </children>
