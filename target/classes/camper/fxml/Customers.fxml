@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camper.controller.CustomersController">
    <left>
       <VBox prefHeight="750.0" prefWidth="221.0" BorderPane.alignment="CENTER">
          <children>
@@ -19,7 +18,7 @@
                   <Insets left="20.0" top="20.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="150.0">
+            <TextField fx:id="fldCustomerFirstName" maxWidth="150.0">
                <VBox.margin>
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
@@ -29,7 +28,7 @@
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="150.0">
+            <TextField fx:id="fldCustomerLastName" maxWidth="150.0">
                <VBox.margin>
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
@@ -39,7 +38,7 @@
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="150.0">
+            <TextField fx:id="fldCustomerID" maxWidth="150.0">
                <VBox.margin>
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
@@ -49,7 +48,7 @@
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="150.0">
+            <TextField fx:id="fldCustomerAddress" maxWidth="150.0">
                <VBox.margin>
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
@@ -59,7 +58,7 @@
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField maxWidth="150.0">
+            <TextField fx:id="fldCustomerPhoneNo" maxWidth="150.0">
                <VBox.margin>
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
@@ -73,13 +72,18 @@
       </VBox>
    </left>
    <center>
-      <TableView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="viewTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn prefWidth="83.0" text="ID" />
-          <TableColumn prefWidth="99.0" text="First Name" />
-            <TableColumn prefWidth="99.0" text="Last Name" />
-            <TableColumn prefWidth="112.0" text="Address" />
-            <TableColumn prefWidth="159.0" text="Phone Number" />
+          <TableColumn fx:id="colID" prefWidth="83.0" text="ID" />
+          <TableColumn fx:id="colFirstName" prefWidth="99.0" text="First Name" />
+            <TableColumn fx:id="colLastName" prefWidth="99.0" text="Last Name" />
+            <TableColumn fx:id="colPhoneNo" prefWidth="95.0" text="Phone Number" />
+            <TableColumn fx:id="colCountryName" prefWidth="97.0" text="Country Name" />
+            <TableColumn fx:id="colCityPostalCode" prefWidth="107.0" text="City Postal Code" />
+            <TableColumn fx:id="colCityName" prefWidth="106.0" text="City Name" />
+            <TableColumn fx:id="colStreet" prefWidth="106.0" text="Street" />
+            <TableColumn fx:id="colAptNumber" prefWidth="148.0" text="Apartment Number" />
+            <TableColumn fx:id="colFloor" prefWidth="57.0" text="Floor" />
         </columns>
       </TableView>
    </center>

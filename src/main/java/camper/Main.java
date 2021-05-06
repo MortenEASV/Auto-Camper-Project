@@ -1,6 +1,7 @@
 package camper;
 
 import camper.model.AutoCamper;
+import camper.model.Customer;
 import camper.model.DateInterval;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +18,10 @@ import java.util.HashMap;
 
 public class Main extends Application {
     public static ArrayList<AutoCamper> cacheAutoCampers;
+    public static ArrayList<Customer> cacheCustomers;
     public static HashMap<Integer, ArrayList<DateInterval>> cacheReservations = new HashMap<>();
 
-    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=cokanovic";
+    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=kristensen";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -35,7 +37,9 @@ public class Main extends Application {
     private void downloadCache() {
         String sqlReservations = "SELECT * FROM reservations";
         String sqlAutoCampers = "SELECT * FROM autoCampers";
+        String sqlCustomers = "SELECT * FROM [Customers]";
         cacheAutoCampers = new ArrayList<>();
+        cacheCustomers = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(URL); Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(sqlReservations);
@@ -69,6 +73,25 @@ public class Main extends Application {
                     cacheAutoCampers.add(new AutoCamper(id, price, seats, sleeps, wc, kitchen, width, height, length, transmission, fuelType, cacheReservations.get(id)));
                 }
             }
+
+            //Customers
+            rs = stmt.executeQuery(sqlCustomers);
+            while (rs.next()){
+                int id = rs.getInt("fld_CustomerID");
+                String firstName = rs.getString("fld_FirstName");
+                String lastName = rs.getString("fld_LastName");
+                String phoneNo = rs.getString("fld_PhoneNo");
+                String countryName = rs.getString("fld_CountryName");
+                String cityPostalCode = rs.getString("fld_CityPostalCode");
+                String cityName = rs.getString("fld_CityName");
+                String street = rs.getString("fld_Street");
+                String aptNumber = rs.getString("fld_AptNumber");
+                String floor = rs.getString("fld_Floor");
+
+                cacheCustomers.add(new Customer(id, firstName,lastName,phoneNo,countryName,cityPostalCode,cityName,street,aptNumber,floor));
+
+            }
+
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
