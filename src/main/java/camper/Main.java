@@ -1,12 +1,15 @@
 package camper;
 
 import camper.model.AutoCamper;
+import camper.model.Customer;
 import camper.model.DateInterval;
+import camper.model.Reservation;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,7 +24,7 @@ public class Main extends Application {
     public static HashMap<Integer, ArrayList<DateInterval>> cacheReservations = new HashMap<>();
     public static ObservableList<Reservation> reservations = FXCollections.observableArrayList();
 
-    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=cokanovic";
+    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=rasmus";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -56,7 +59,7 @@ public class Main extends Application {
                 String fullName = firstName + " " + lastName;
 
 
-                Reservation reservation = new Reservation(from,to,customerID,reservationID,fullName);
+                Reservation reservation = new Reservation(from, to, customerID, reservationID, fullName);
                 reservations.add(reservation);
                 if (!cacheReservations.containsKey(id)) {
                     cacheReservations.put(id, new ArrayList<>());
@@ -87,7 +90,7 @@ public class Main extends Application {
 
             //Customers
             rs = stmt.executeQuery(sqlCustomers);
-            while (rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("fld_CustomerID");
                 String firstName = rs.getString("fld_FirstName");
                 String lastName = rs.getString("fld_LastName");
@@ -99,7 +102,7 @@ public class Main extends Application {
                 String aptNumber = rs.getString("fld_AptNumber");
                 String floor = rs.getString("fld_Floor");
 
-                cacheCustomers.add(new Customer(id, firstName,lastName,phoneNo,countryName,cityPostalCode,cityName,street,aptNumber,floor));
+                cacheCustomers.add(new Customer(id, firstName, lastName, phoneNo, countryName, cityPostalCode, cityName, street, aptNumber, floor));
 
             }
 
