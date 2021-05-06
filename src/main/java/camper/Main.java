@@ -18,7 +18,7 @@ public class Main extends Application {
     public static ArrayList<AutoCamper> cacheAutoCampers;
     public static HashMap<Integer, ArrayList<DateInterval>> cacheReservations = new HashMap<>();
 
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=cokanovic";
+    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=cokanovic";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -42,7 +42,7 @@ public class Main extends Application {
             while (rs.next()) {
                 int id = rs.getInt("fld_AutoCamperID");
 
-                if (cacheReservations.containsKey(id)) {
+                if (!cacheReservations.containsKey(id)) {
                     cacheReservations.put(id, new ArrayList<>());
                 }
 
@@ -65,7 +65,6 @@ public class Main extends Application {
                 String fuelType = rs.getString("fld_FuelType");
 
                 cacheAutoCampers.add(new AutoCamper(id, price, seats, sleeps, wc, kitchen, width, height, length, transmission, fuelType, cacheReservations.get(id)));
-                System.out.println(cacheAutoCampers.get(cacheAutoCampers.size() - 1));
             }
         } catch (SQLException exception) {
             exception.printStackTrace();

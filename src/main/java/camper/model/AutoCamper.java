@@ -29,7 +29,12 @@ public class AutoCamper {
         this.length = length;
         this.transmission = transmission;
         this.fuelType = fuelType;
-        this.reservations = new ArrayList<>(reservations);
+
+        if (reservations != null) {
+            this.reservations = new ArrayList<>(reservations);
+        } else {
+            this.reservations = new ArrayList<>();
+        }
     }
 
     public int getId() {

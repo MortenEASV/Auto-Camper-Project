@@ -102,6 +102,8 @@ public class AutoCampersController {
             ArrayList<DateInterval> dateIntervals = autoCamper.getReservedDates();
             boolean isReserved = true;
 
+            System.out.println(dateIntervals.size());
+
             for (DateInterval interval : dateIntervals) {
                 if (dateTo.getValue().isBefore(interval.getFrom()) || dateFrom.getValue().isAfter(interval.getTo())) {
                     isReserved = false;
