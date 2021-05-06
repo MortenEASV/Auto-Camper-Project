@@ -100,11 +100,11 @@ public class AutoCampersController {
         ObjectProperty<Predicate<AutoCamper>> filterDate = new SimpleObjectProperty<>();
         filterDate.bind(Bindings.createObjectBinding(() -> autoCamper -> {
             ArrayList<DateInterval> dateIntervals = autoCamper.getReservedDates();
-            boolean isReserved = false;
+            boolean isReserved = true;
 
             for (DateInterval interval : dateIntervals) {
-                if (!(dateTo.getValue().isBefore(interval.getFrom()) || dateFrom.getValue().isAfter(interval.getTo()))) {
-                    isReserved = true;
+                if (dateTo.getValue().isBefore(interval.getFrom()) || dateFrom.getValue().isAfter(interval.getTo())) {
+                    isReserved = false;
 
                     break;
                 }
@@ -154,16 +154,17 @@ public class AutoCampersController {
                 -> autoCamper.getFuelType().equals(choiceFuelType.getValue())));
 
         FilteredList<AutoCamper> filteredItems = new FilteredList<>(FXCollections.observableList(Main.cacheAutoCampers));
-        filteredItems.predicateProperty().bind(Bindings.createObjectBinding(() -> filterPriceCategory.get()
+        filteredItems.predicateProperty().bind(Bindings.createObjectBinding(() -> filterDate.get()
+                        .and(filterPriceCategory.get())
                         .and(filterSeats.get()
-                                .and(filterSleeps.get()
-                                        .and(filterWC.get()
-                                                .and(filterKitchen.get()
-                                                        .and(filterWidth.get()
-                                                                .and(filterHeight.get()
-                                                                        .and(filterLength.get()
-                                                                                .and(filterTransmission.get()
-                                                                                        .and(filterFuelType.get()))))))))),
+                        .and(filterSleeps.get()
+                        .and(filterWC.get()
+                        .and(filterKitchen.get()
+                        .and(filterWidth.get()
+                        .and(filterHeight.get()
+                        .and(filterLength.get()
+                        .and(filterTransmission.get()
+                        .and(filterFuelType.get()))))))))),
                 choiceCategory.valueProperty(),
                 choiceSeats.valueProperty(),
                 choiceSleeps.valueProperty(),

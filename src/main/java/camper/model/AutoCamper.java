@@ -2,7 +2,6 @@ package camper.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class AutoCamper {
     private final int id;
@@ -16,9 +15,9 @@ public class AutoCamper {
     private final double length;
     private final String transmission;
     private final String fuelType;
-    private final ArrayList<Reservation> reservations = new ArrayList<>();
+    private final ArrayList<DateInterval> reservations;
 
-    public AutoCamper(int id, String price, int seats, int sleeps, boolean wc, boolean kitchen, double width, double height, double length, String transmission, String fuelType, Reservation... reservation) {
+    public AutoCamper(int id, String price, int seats, int sleeps, boolean wc, boolean kitchen, double width, double height, double length, String transmission, String fuelType, ArrayList<DateInterval> reservations) {
         this.id = id;
         this.price = price;
         this.seats = seats;
@@ -30,8 +29,7 @@ public class AutoCamper {
         this.length = length;
         this.transmission = transmission;
         this.fuelType = fuelType;
-
-        reservations.addAll(Arrays.asList(reservation));
+        this.reservations = new ArrayList<>(reservations);
     }
 
     public int getId() {
@@ -79,12 +77,24 @@ public class AutoCamper {
     }
 
     public ArrayList<DateInterval> getReservedDates() {
-        ArrayList<DateInterval> intervals = new ArrayList<>();
+        return reservations;
+    }
 
-        for (Reservation reservation : reservations) {
-            intervals.add(new DateInterval(reservation.getFrom(), reservation.getTo()));
-        }
-
-        return intervals;
+    @Override
+    public String toString() {
+        return "AutoCamper{" +
+                "id=" + id +
+                ", price='" + price + '\'' +
+                ", seats=" + seats +
+                ", sleeps=" + sleeps +
+                ", wc=" + wc +
+                ", kitchen=" + kitchen +
+                ", width=" + width +
+                ", height=" + height +
+                ", length=" + length +
+                ", transmission='" + transmission + '\'' +
+                ", fuelType='" + fuelType + '\'' +
+                ", reservations=" + reservations +
+                '}';
     }
 }
