@@ -3,15 +3,15 @@ package camper.model;
 import java.time.LocalDate;
 
 public class Reservation {
-    private final LocalDate from, to;
-    private final int customerID;
-    private final int reservationID;
-    private final int customerName;
+    private LocalDate from, to;
+    private int customerID;
+    private int reservationID;
+    private String customerName;
 
 
-    public Reservation(String from, String to, int customerID, int reservationID, int customerName) {
-        this.from = LocalDate.parse(from);
-        this.to = LocalDate.parse(to);
+    public Reservation(LocalDate from, LocalDate to, int customerID, int reservationID, String customerName) {
+        this.from = from;
+        this.to = to;
         this.customerID = customerID;
         this.reservationID = reservationID;
         this.customerName = customerName;
@@ -33,7 +33,18 @@ public class Reservation {
         return reservationID;
     }
 
-    public int getCustomerName() {
+    public String getCustomerName() {
         return customerName;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "from=" + from +
+                ", to=" + to +
+                ", customerID=" + customerID +
+                ", reservationID=" + reservationID +
+                ", customerName='" + customerName + '\'' +
+                '}';
     }
 }

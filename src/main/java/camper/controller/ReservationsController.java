@@ -7,9 +7,8 @@ import camper.model.Reservation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -17,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ReservationsController {
@@ -35,10 +35,26 @@ public class ReservationsController {
     Button btnApply;
 
     @FXML
+    TableView<Reservation> tableView = new TableView();
+
+    @FXML
+    TableColumn<Reservation, Integer> colReservationID;
+    @FXML
+    TableColumn<Reservation, Integer> colCustomerID;
+    @FXML
+    TableColumn<Reservation, String> colCustomerName;
+    @FXML
+    TableColumn<Reservation, LocalDate> colFrom;
+    @FXML
+    TableColumn<Reservation, LocalDate> colUntil;
+
+    @FXML
     public void initialize() throws IOException {
         paneReservations = (Pane) root.getCenter();
         paneNewReservation = FXMLLoader.load(getClass().getResource("../fxml/NewReservation.fxml"));
         paneDeleteReservation = FXMLLoader.load(getClass().getResource("../fxml/DeleteReservation.fxml"));
+
+        initializeReservationTable();
 
         btnCancel = (Button) paneDeleteReservation.lookupButton(ButtonType.CANCEL);
         btnApply = (Button) paneDeleteReservation.lookupButton(ButtonType.APPLY);
@@ -54,8 +70,23 @@ public class ReservationsController {
         btnNewReservation.setOnAction(e -> root.setCenter(paneNewReservation));
         btnDeleteReservation.setOnAction(e -> popup.show());
     }
-    public void deleteReservation(int ID){
-        String deleteProcedure = "EXECUTE sp_deleteReservation @ID = "+ ID;
+
+    public void initializeReservationTable() {
+        colReservationID.setCellValueFactory(new PropertyValueFactory<>("reservationID"));
+        colCustomerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        colCustomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        colFrom.setCellValueFactory(new PropertyValueFactory<>("from"));
+        colUntil.setCellValueFactory(new PropertyValueFactory<>("to"));
+        tableView.getColumns().addAll(colReservationID, colCustomerID, colCustomerName, colFrom, colUntil);
+        tableView.setItems(Main.reservations);
+
+        tableView.getItems().forEach(System.out::println);
+
+
+    }
+
+    public void deleteReservation(int ID) {
+        String deleteProcedure = "EXECUTE sp_deleteReservation @ID = " + ID;
         try (Connection conn = DriverManager.getConnection(Main.URL); Statement stmt = conn.createStatement()) {
             stmt.execute(deleteProcedure);
 

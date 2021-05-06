@@ -2,7 +2,10 @@ package camper;
 
 import camper.model.AutoCamper;
 import camper.model.DateInterval;
+import camper.model.Reservation;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,12 +17,16 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Observable;
 
 public class Main extends Application {
     public static ArrayList<AutoCamper> cacheAutoCampers;
     public static HashMap<Integer, ArrayList<DateInterval>> cacheReservations = new HashMap<>();
+    public static ObservableList<Reservation> reservations = FXCollections.observableArrayList();
 
-    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=cokanovic";
+
+    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=rasmus";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,20 +40,30 @@ public class Main extends Application {
     }
 
     private void downloadCache() {
-        String sqlReservations = "SELECT * FROM reservations";
-        String sqlAutoCampers = "SELECT * FROM autoCampers";
+        String sqlReservations = "SELECT * FROM [Reservations]";
+        String sqlAutoCampers = "SELECT * FROM [Autocampers]";
         cacheAutoCampers = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(URL); Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(sqlReservations);
 
             while (rs.next()) {
-                int id = rs.getInt("fld_AutoCamperID");
 
+                int id = rs.getInt("fld_AutoCamperID");
+                LocalDate from = (rs.getDate("fld_DateFrom").toLocalDate());
+                LocalDate to = (rs.getDate("fld_DateUntil").toLocalDate());
+                int customerID = rs.getInt("fld_CustomerId");
+                int reservationID = rs.getInt("fld_ReservationID");
+                String firstName = rs.getString("fld_FirstName");
+                String lastName = rs.getString("fld_LastName");
+                String fullName = firstName + " " + lastName;
+
+
+                Reservation reservation = new Reservation(from,to,customerID,reservationID,fullName);
+                reservations.add(reservation);
                 if (!cacheReservations.containsKey(id)) {
                     cacheReservations.put(id, new ArrayList<>());
                 }
-
                 cacheReservations.get(id).add(new DateInterval(rs.getDate("fld_DateFrom").toLocalDate(), rs.getDate("fld_DateUntil").toLocalDate()));
             }
 
