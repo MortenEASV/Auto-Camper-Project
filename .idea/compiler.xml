@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="Auto-Camper-Project" />
         <module name="Auto Camper" />
         <module name="Auto Camper Rental System" />
       </profile>

@@ -1,5 +1,6 @@
 package camper.controller;
 
+import camper.model.Reservation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,25 +26,30 @@ public class ReservationsController {
     private BorderPane paneNewReservation;
     private DialogPane paneDeleteReservation;
 
+    Button btnCancel;
+    Button btnApply;
+
     @FXML
     public void initialize() throws IOException {
         paneReservations = (Pane) root.getCenter();
         paneNewReservation = FXMLLoader.load(getClass().getResource("../fxml/NewReservation.fxml"));
         paneDeleteReservation = FXMLLoader.load(getClass().getResource("../fxml/DeleteReservation.fxml"));
 
-        Button btnCancel = (Button) paneDeleteReservation.lookupButton(ButtonType.CANCEL);
-        Button btnApply = (Button) paneDeleteReservation.lookupButton(ButtonType.APPLY);
-
+        btnCancel = (Button) paneDeleteReservation.lookupButton(ButtonType.CANCEL);
+        btnApply = (Button) paneDeleteReservation.lookupButton(ButtonType.APPLY);
         Stage popup = new Stage();
         popup.setTitle("Delete Reservation");
         popup.initModality(Modality.APPLICATION_MODAL);
         popup.setScene(new Scene(paneDeleteReservation));
 
         btnCancel.setOnAction(event -> popup.close());
-        btnApply.setOnAction(event -> popup.close());
+        btnApply.setOnAction(event -> deleteReservation(Integer.parseInt(paneDeleteReservation.getContentText())));
 
         btnAllReservations.setOnAction(e -> root.setCenter(paneReservations));
         btnNewReservation.setOnAction(e -> root.setCenter(paneNewReservation));
         btnDeleteReservation.setOnAction(e -> popup.show());
+    }
+    public void deleteReservation(int ID){
+        //Delete reservationID from tbl_reservations
     }
 }
