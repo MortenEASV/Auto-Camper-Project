@@ -5,7 +5,7 @@
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.TextField?>
 
-<DialogPane headerText="Which reservation do you wish to delete?&#10;Type the ID below" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane headerText="Which reservation do you wish to delete?&#10;Type the ID below" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1">
    <buttonTypes>
       <ButtonType fx:constant="CANCEL" />
       <ButtonType fx:constant="APPLY" />

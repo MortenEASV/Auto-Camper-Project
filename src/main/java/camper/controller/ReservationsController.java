@@ -34,19 +34,16 @@ public class ReservationsController {
         Button btnCancel = (Button) paneDeleteReservation.lookupButton(ButtonType.CANCEL);
         Button btnApply = (Button) paneDeleteReservation.lookupButton(ButtonType.APPLY);
 
+        Stage popup = new Stage();
+        popup.setTitle("Delete Reservation");
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.setScene(new Scene(paneDeleteReservation));
+
+        btnCancel.setOnAction(event -> popup.close());
+        btnApply.setOnAction(event -> popup.close());
+
         btnAllReservations.setOnAction(e -> root.setCenter(paneReservations));
         btnNewReservation.setOnAction(e -> root.setCenter(paneNewReservation));
-        btnDeleteReservation.setOnAction(e -> {
-            Stage popup = new Stage();
-
-            popup.setTitle("Delete Reservation");
-            popup.initModality(Modality.APPLICATION_MODAL);
-            popup.setScene(new Scene(paneDeleteReservation));
-
-            btnCancel.setOnAction(event -> popup.close());
-            btnApply.setOnAction(event -> popup.close());
-
-            popup.show();
-        });
+        btnDeleteReservation.setOnAction(e -> popup.show());
     }
 }
