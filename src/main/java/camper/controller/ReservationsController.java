@@ -1,5 +1,8 @@
 package camper.controller;
 
+import camper.Main;
+import camper.model.AutoCamper;
+import camper.model.DateInterval;
 import camper.model.Reservation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +16,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class ReservationsController {
     @FXML
@@ -50,6 +55,12 @@ public class ReservationsController {
         btnDeleteReservation.setOnAction(e -> popup.show());
     }
     public void deleteReservation(int ID){
-        //Delete reservationID from tbl_reservations
+        String deleteProcedure = "EXECUTE sp_deleteReservation @ID = "+ ID;
+        try (Connection conn = DriverManager.getConnection(Main.URL); Statement stmt = conn.createStatement()) {
+            stmt.execute(deleteProcedure);
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
     }
 }
