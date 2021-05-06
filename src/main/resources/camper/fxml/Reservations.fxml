@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camper.controller.ReservationsController">
    <top>
       <BorderPane prefHeight="50.0" prefWidth="1200.0" BorderPane.alignment="TOP_LEFT">
          <left>
-            <Button fx:id="btnAllReservations" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-insets: 0px;" text="All Reservations" BorderPane.alignment="CENTER">
+            <Button fx:id="btnAllReservations" mnemonicParsing="false" onAction="#handleButtons" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-insets: 0px;" text="All Reservations" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="25.0" />
                </BorderPane.margin></Button>
@@ -20,11 +20,11 @@
          <right>
             <HBox alignment="CENTER" prefHeight="50.0" BorderPane.alignment="CENTER">
                <children>
-                <Button fx:id="btnNewReservation" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-insets: 0px;" text="New Reservation">
+                <Button fx:id="btnNewReservation" mnemonicParsing="false" onAction="#handleButtons" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-insets: 0px;" text="New Reservation">
                      <HBox.margin>
                         <Insets right="25.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="btnDeleteReservation" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-insets: 0px;" text="Delete Reservation">
+                  <Button fx:id="btnDeleteReservation" mnemonicParsing="false" onAction="#handleButtons" prefHeight="30.0" prefWidth="150.0" style="-fx-background-radius: 0px; -fx-background-insets: 0px;" text="Delete Reservation">
                      <HBox.margin>
                         <Insets right="25.0" />
                      </HBox.margin></Button>
