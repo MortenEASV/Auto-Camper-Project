@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -64,7 +65,9 @@ public class Main extends Application {
                 String transmission = rs.getString("fld_TransmissionType");
                 String fuelType = rs.getString("fld_FuelType");
 
-                cacheAutoCampers.add(new AutoCamper(id, price, seats, sleeps, wc, kitchen, width, height, length, transmission, fuelType, cacheReservations.get(id)));
+                if (cacheReservations.containsKey(id)) {
+                    cacheAutoCampers.add(new AutoCamper(id, price, seats, sleeps, wc, kitchen, width, height, length, transmission, fuelType, cacheReservations.get(id)));
+                }
             }
         } catch (SQLException exception) {
             exception.printStackTrace();

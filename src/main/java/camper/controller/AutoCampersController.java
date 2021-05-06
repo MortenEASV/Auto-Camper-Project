@@ -13,8 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.function.Predicate;
 
 public class AutoCampersController {
@@ -62,6 +60,9 @@ public class AutoCampersController {
         colFuelType.setCellValueFactory(new PropertyValueFactory<>("fuelType"));
         colTransmission.setCellValueFactory(new PropertyValueFactory<>("transmission"));
 
+        dateFrom.setValue(LocalDate.parse("1990-01-01"));
+        dateTo.setValue(LocalDate.parse("1990-01-02"));
+
         initializeChoiceBoxes();
         initializeFilters();
     }
@@ -99,20 +100,17 @@ public class AutoCampersController {
     private void initializeFilters() {
         ObjectProperty<Predicate<AutoCamper>> filterDate = new SimpleObjectProperty<>();
         filterDate.bind(Bindings.createObjectBinding(() -> autoCamper -> {
-            ArrayList<DateInterval> dateIntervals = autoCamper.getReservedDates();
-            boolean isReserved = true;
+            boolean isReserved = false;
 
-            System.out.println(dateIntervals.size());
-
-            for (DateInterval interval : dateIntervals) {
-                if (dateTo.getValue().isBefore(interval.getFrom()) || dateFrom.getValue().isAfter(interval.getTo())) {
-                    isReserved = false;
+            for (DateInterval interval : autoCamper.getReservedDates()) {
+                if ((dateFrom.getValue().isEqual(interval.getTo()) || dateFrom.getValue().isBefore(interval.getTo())) && (dateTo.getValue().isEqual(interval.getFrom()) || dateTo.getValue().isAfter(interval.getFrom()))) {
+                    isReserved = true;
 
                     break;
                 }
             }
 
-            return isReserved;
+            return !isReserved;
         }));
 
         ObjectProperty<Predicate<AutoCamper>> filterPriceCategory = new SimpleObjectProperty<>();
@@ -176,7 +174,9 @@ public class AutoCampersController {
                 fldMinHeight.textProperty(),
                 fldMinLength.textProperty(),
                 choiceTransmission.valueProperty(),
-                choiceFuelType.valueProperty()));
+                choiceFuelType.valueProperty(),
+                dateFrom.valueProperty(),
+                dateTo.valueProperty()));
 
         viewTable.setItems(filteredItems);
     }
