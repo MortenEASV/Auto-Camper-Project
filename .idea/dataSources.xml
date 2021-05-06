@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+<<<<<<< HEAD
     <data-source source="LOCAL" name="DB_WagnerAutocampers@localhost" uuid="df55e699-1c4c-443c-bc21-f9ef7e6ca03e">
+=======
+    <data-source source="LOCAL" name="DB_WagnerAutocampers@localhost" uuid="06d1bcb4-b7d1-4f47-a56c-85795e1835f9">
+>>>>>>> origin/master
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>

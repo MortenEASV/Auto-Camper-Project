@@ -2,10 +2,7 @@ package camper;
 
 import camper.model.AutoCamper;
 import camper.model.DateInterval;
-import camper.model.Reservation;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,16 +14,14 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Observable;
 
 public class Main extends Application {
     public static ArrayList<AutoCamper> cacheAutoCampers;
+    public static ArrayList<Customer> cacheCustomers;
     public static HashMap<Integer, ArrayList<DateInterval>> cacheReservations = new HashMap<>();
     public static ObservableList<Reservation> reservations = FXCollections.observableArrayList();
 
-
-    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=rasmus";
+    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=cokanovic";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -40,9 +35,11 @@ public class Main extends Application {
     }
 
     private void downloadCache() {
+        String sqlCustomers = "SELECT * FROM [Customers]";
         String sqlReservations = "SELECT * FROM [Reservations]";
         String sqlAutoCampers = "SELECT * FROM [Autocampers]";
         cacheAutoCampers = new ArrayList<>();
+        cacheCustomers = new ArrayList<>();
 
         try (Connection conn = DriverManager.getConnection(URL); Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(sqlReservations);
@@ -64,6 +61,7 @@ public class Main extends Application {
                 if (!cacheReservations.containsKey(id)) {
                     cacheReservations.put(id, new ArrayList<>());
                 }
+
                 cacheReservations.get(id).add(new DateInterval(rs.getDate("fld_DateFrom").toLocalDate(), rs.getDate("fld_DateUntil").toLocalDate()));
             }
 
@@ -86,6 +84,25 @@ public class Main extends Application {
                     cacheAutoCampers.add(new AutoCamper(id, price, seats, sleeps, wc, kitchen, width, height, length, transmission, fuelType, cacheReservations.get(id)));
                 }
             }
+
+            //Customers
+            rs = stmt.executeQuery(sqlCustomers);
+            while (rs.next()){
+                int id = rs.getInt("fld_CustomerID");
+                String firstName = rs.getString("fld_FirstName");
+                String lastName = rs.getString("fld_LastName");
+                String phoneNo = rs.getString("fld_PhoneNo");
+                String countryName = rs.getString("fld_CountryName");
+                String cityPostalCode = rs.getString("fld_CityPostalCode");
+                String cityName = rs.getString("fld_CityName");
+                String street = rs.getString("fld_Street");
+                String aptNumber = rs.getString("fld_AptNumber");
+                String floor = rs.getString("fld_Floor");
+
+                cacheCustomers.add(new Customer(id, firstName,lastName,phoneNo,countryName,cityPostalCode,cityName,street,aptNumber,floor));
+
+            }
+
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
