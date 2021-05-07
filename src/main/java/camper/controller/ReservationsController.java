@@ -45,6 +45,8 @@ public class ReservationsController {
     @FXML
     TableColumn<Reservation, LocalDate> colUntil;
 
+//    @FXML TextField fldID;
+
     @FXML
     public void initialize() throws IOException {
         paneReservations = (Pane) root.getCenter();
@@ -61,7 +63,10 @@ public class ReservationsController {
         popup.setScene(new Scene(paneDeleteReservation));
 
         btnCancel.setOnAction(event -> popup.close());
-        btnApply.setOnAction(event -> deleteReservation(Integer.parseInt(paneDeleteReservation.getContentText())));
+        btnApply.setOnAction(event -> {
+            TextField text = (TextField)paneDeleteReservation.getContent();
+            deleteReservation(Integer.parseInt(text.getText()));
+        });
 
         btnAllReservations.setOnAction(e -> root.setCenter(paneReservations));
         btnNewReservation.setOnAction(e -> root.setCenter(paneNewReservation));
@@ -75,19 +80,16 @@ public class ReservationsController {
         colFrom.setCellValueFactory(new PropertyValueFactory<>("from"));
         colUntil.setCellValueFactory(new PropertyValueFactory<>("to"));
         viewTable.setItems(Main.reservations);
-
-        viewTable.getItems().forEach(System.out::println);
-
-
     }
 
     public void deleteReservation(int ID) {
         String deleteProcedure = "EXECUTE sp_deleteReservation @ID = " + ID;
         try (Connection conn = DriverManager.getConnection(Main.URL); Statement stmt = conn.createStatement()) {
             stmt.execute(deleteProcedure);
-
+            Main.reservations.removeIf(reservation -> reservation.getReservationID() == ID);
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+
     }
 }
