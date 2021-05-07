@@ -20,11 +20,11 @@ import java.util.HashMap;
 
 public class Main extends Application {
     public static ArrayList<AutoCamper> cacheAutoCampers;
-    public static ArrayList<Customer> cacheCustomers;
+    public static ObservableList<Customer> cacheCustomers;
     public static HashMap<Integer, ArrayList<DateInterval>> cacheReservations = new HashMap<>();
     public static ObservableList<Reservation> reservations = FXCollections.observableArrayList();
 
-    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=cokanovic";
+    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=kristensen";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -42,7 +42,7 @@ public class Main extends Application {
         String sqlReservations = "SELECT * FROM [Reservations]";
         String sqlAutoCampers = "SELECT * FROM [Autocampers]";
         cacheAutoCampers = new ArrayList<>();
-        cacheCustomers = new ArrayList<>();
+        cacheCustomers = FXCollections.observableArrayList();
 
         try (Connection conn = DriverManager.getConnection(URL); Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(sqlReservations);

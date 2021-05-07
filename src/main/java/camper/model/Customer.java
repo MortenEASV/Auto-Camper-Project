@@ -29,7 +29,7 @@ public class Customer {
         return id;
     }
     public String getIdToString() {
-        return ""+id;
+        return String.valueOf(id);
     }
 
     public String getFirstName() {

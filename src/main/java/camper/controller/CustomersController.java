@@ -3,18 +3,22 @@ package camper.controller;
 import camper.Main;
 import camper.model.AutoCamper;
 import camper.model.Customer;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.sql.*;
 import java.util.function.Predicate;
 
 public class CustomersController {
@@ -30,15 +34,15 @@ public class CustomersController {
 
     @FXML
     TextField fldCustomerFirstName, fldCustomerLastName, fldCustomerID, fldCustomerAddress, fldCustomerPhoneNo;
+    @FXML
+    Button btnCancel, btnApply, btnDeleteCustomer;
+    private DialogPane paneDeleteCustomer;
 
 
 
+    public void initialize() throws IOException {
 
-
-    public void initialize(){
-
-
-
+        paneDeleteCustomer = FXMLLoader.load(getClass().getResource("../fxml/DeleteCustomer.fxml"));
 
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -51,8 +55,50 @@ public class CustomersController {
         colAptNumber.setCellValueFactory(new PropertyValueFactory<>("aptNumber"));
         colFloor.setCellValueFactory(new PropertyValueFactory<>("floor"));
 
+
+        btnCancel = (Button) paneDeleteCustomer.lookupButton(ButtonType.CANCEL);
+        btnApply = (Button) paneDeleteCustomer.lookupButton(ButtonType.APPLY);
+        Stage popup = new Stage();
+        popup.setTitle("Delete Customer");
+        popup.initModality(Modality.APPLICATION_MODAL);
+        popup.setScene(new Scene(paneDeleteCustomer));
+
+        btnDeleteCustomer.setOnAction(event -> popup.show());
+
+        btnCancel.setOnAction(event -> popup.close());
+        btnApply.setOnAction(event -> {
+            TextField text = (TextField)paneDeleteCustomer.getContent();
+            deleteCustomer(Integer.parseInt(text.getText()));
+        });
+
+
+
+
+
         initializeFilters();
     }
+
+    public void deleteCustomer(int ID) {
+        String deleteProcedure = "{call sp_deleteCustomer(?)}";
+        try (Connection conn = DriverManager.getConnection(Main.URL); CallableStatement stmt = conn.prepareCall(deleteProcedure)) {
+            stmt.setInt("ID",ID);
+            stmt.execute();
+            for (Customer c:Main.cacheCustomers) {
+                System.out.println(c.getId());
+            }
+            System.out.println(ID);
+            System.out.println(Main.cacheCustomers.removeIf(customer -> customer.getId() == ID));
+
+            initializeFilters();
+
+
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+    }
+
     public void initializeFilters(){
         FilteredList<Customer> filteredItems = new FilteredList<>(FXCollections.observableList(Main.cacheCustomers));
         ObjectProperty<Predicate<Customer>> filterFirstName = new SimpleObjectProperty<>();
@@ -89,7 +135,7 @@ public class CustomersController {
                 fldCustomerLastName.textProperty(),
                 fldCustomerID.textProperty(),
                 fldCustomerAddress.textProperty(),
-                fldCustomerPhoneNo.textProperty()));
+                fldCustomerPhoneNo.textProperty(),Main.cacheCustomers));
 
         viewTable.setItems(filteredItems);
 
