@@ -31,5 +31,7 @@ public class MainController {
         // btnRentals.setOnAction(e -> root.setCenter(paneRentals));
         // btnReports.setOnAction(e -> root.setCenter(paneReports));
         btnReservations.setOnAction(e -> root.setCenter(paneReservations));
+
+        root.setCenter(paneAutoCampers);
     }
 }
