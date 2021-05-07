@@ -28,6 +28,9 @@ public class Customer {
     public int getId() {
         return id;
     }
+    public String getIdToString() {
+        return ""+id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -64,6 +67,12 @@ public class Customer {
     public String getFloor() {
         return floor;
     }
+
+    public String getAddress(){
+        return cityPostalCode+", "+cityName+", "+street+", "+aptNumber+", "+floor;
+    }
+
+
 
     @Override
     public String toString() {

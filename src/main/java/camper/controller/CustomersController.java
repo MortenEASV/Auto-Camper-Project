@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import javax.xml.soap.Text;
 import java.util.function.Predicate;
 
 public class CustomersController {
@@ -38,6 +37,9 @@ public class CustomersController {
 
     public void initialize(){
 
+
+
+
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -54,21 +56,42 @@ public class CustomersController {
     public void initializeFilters(){
         FilteredList<Customer> filteredItems = new FilteredList<>(FXCollections.observableList(Main.cacheCustomers));
         ObjectProperty<Predicate<Customer>> filterFirstName = new SimpleObjectProperty<>();
+        ObjectProperty<Predicate<Customer>> filterLastName = new SimpleObjectProperty<>();
+        ObjectProperty<Predicate<Customer>> filterID = new SimpleObjectProperty<>();
+        ObjectProperty<Predicate<Customer>> filterAddress = new SimpleObjectProperty<>();
+        ObjectProperty<Predicate<Customer>> filterPhoneNo = new SimpleObjectProperty<>();
+
 
 
         filterFirstName.bind(Bindings.createObjectBinding(() -> Customer
-                -> Customer.getFirstName().contains(fldCustomerFirstName.getText())));
+                -> Customer.getFirstName().toLowerCase().contains(fldCustomerFirstName.getText().toLowerCase())));
+
+        filterLastName.bind(Bindings.createObjectBinding(() -> Customer
+                -> Customer.getLastName().toLowerCase().contains(fldCustomerLastName.getText().toLowerCase())));
+
+        filterID.bind(Bindings.createObjectBinding(() -> Customer
+                -> Customer.getIdToString().toLowerCase().contains(fldCustomerID.getText().toLowerCase())));
+
+        filterAddress.bind(Bindings.createObjectBinding(() -> Customer
+                -> Customer.getAddress().toLowerCase().contains(fldCustomerAddress.getText().toLowerCase())));
+
+        filterPhoneNo.bind(Bindings.createObjectBinding(() -> Customer
+                -> Customer.getPhoneNo().toLowerCase().contains(fldCustomerPhoneNo.getText().toLowerCase())));
 
 
-        filteredItems.predicateProperty().bind(Bindings.createObjectBinding(() -> filterFirstName.get(),fldCustomerFirstName.textProperty()));
-
-
-        //viewTable.getItems().add(new Customer(1, "John", "Doesen", "2142069","Denmark","6200","Aabenraa","Nygade 1","null","null"));
-
+        filteredItems.predicateProperty().bind(Bindings.createObjectBinding(() ->
+                filterFirstName.get()
+                .and(filterLastName.get()
+                .and(filterID.get()
+                .and(filterAddress.get()
+                .and(filterPhoneNo.get())))),
+                fldCustomerFirstName.textProperty(),
+                fldCustomerLastName.textProperty(),
+                fldCustomerID.textProperty(),
+                fldCustomerAddress.textProperty(),
+                fldCustomerPhoneNo.textProperty()));
 
         viewTable.setItems(filteredItems);
-
-        System.out.println(viewTable.getItems().toString());
 
     }
 
