@@ -17,12 +17,4 @@ public class DateInterval {
     public LocalDate getTo() {
         return to;
     }
-
-    @Override
-    public String toString() {
-        return "DateInterval{" +
-                "from=" + from +
-                ", to=" + to +
-                '}';
-    }
 }

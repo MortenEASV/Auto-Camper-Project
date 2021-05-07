@@ -24,7 +24,7 @@ public class Main extends Application {
     public static HashMap<Integer, ArrayList<DateInterval>> cacheReservations = new HashMap<>();
     public static ObservableList<Reservation> reservations = FXCollections.observableArrayList();
 
-    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=kristensen";
+    public static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=DB_WagnerAutocampers;user=sa;password=cokanovic";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -52,7 +52,7 @@ public class Main extends Application {
                 int id = rs.getInt("fld_AutoCamperID");
                 LocalDate from = (rs.getDate("fld_DateFrom").toLocalDate());
                 LocalDate to = (rs.getDate("fld_DateUntil").toLocalDate());
-                int customerID = rs.getInt("fld_CustomerId");
+                int customerID = rs.getInt("fld_CustomerID");
                 int reservationID = rs.getInt("fld_ReservationID");
                 String firstName = rs.getString("fld_FirstName");
                 String lastName = rs.getString("fld_LastName");

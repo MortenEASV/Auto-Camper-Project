@@ -36,15 +36,4 @@ public class Reservation {
     public String getCustomerName() {
         return customerName;
     }
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "from=" + from +
-                ", to=" + to +
-                ", customerID=" + customerID +
-                ", reservationID=" + reservationID +
-                ", customerName='" + customerName + '\'' +
-                '}';
-    }
 }

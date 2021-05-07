@@ -1,7 +1,6 @@
 package camper.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AutoCamper {
     private final int id;
@@ -30,9 +29,6 @@ public class AutoCamper {
         this.transmission = transmission;
         this.fuelType = fuelType;
         this.reservations = reservations;
-
-        System.out.println(id + " " + reservations);
-        System.out.println(reservations.size());
     }
 
     public int getId() {
@@ -81,23 +77,5 @@ public class AutoCamper {
 
     public ArrayList<DateInterval> getReservedDates() {
         return reservations;
-    }
-
-    @Override
-    public String toString() {
-        return "AutoCamper{" +
-                "id=" + id +
-                ", price='" + price + '\'' +
-                ", seats=" + seats +
-                ", sleeps=" + sleeps +
-                ", wc=" + wc +
-                ", kitchen=" + kitchen +
-                ", width=" + width +
-                ", height=" + height +
-                ", length=" + length +
-                ", transmission='" + transmission + '\'' +
-                ", fuelType='" + fuelType + '\'' +
-                ", reservations=" + reservations +
-                '}';
     }
 }
