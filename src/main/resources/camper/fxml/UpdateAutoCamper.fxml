@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camper.controller.UpdateAutoCamperController">
+   <children>
+      <GridPane maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" prefWidth="250.0" />
+          <ColumnConstraints hgrow="ALWAYS" prefWidth="250.0" />
+            <ColumnConstraints hgrow="ALWAYS" prefWidth="250.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="License Plate" />
+                  <TextField fx:id="fldLicensePlate" maxWidth="200.0" promptText="License Plate No." />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Kilometrage" />
+                  <TextField fx:id="fldKilometrage" maxWidth="200.0" promptText="Kilometrage" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" GridPane.columnIndex="1">
+               <children>
+                  <Label text="Garage ID" />
+                  <TextField fx:id="fldGarage" maxWidth="200.0" promptText="Garage ID" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <Label text="Seats" />
+                  <TextField fx:id="fldSeats" maxWidth="200.0" promptText="Seats" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Sleeps" />
+                  <TextField fx:id="fldSleeps" maxWidth="200.0" promptText="Sleeps" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Price Group ID" />
+                  <TextField fx:id="fldPriceGroup" maxWidth="200.0" promptText="Garage ID" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" GridPane.columnIndex="2">
+               <children>
+                  <CheckBox fx:id="checkKitchen" mnemonicParsing="false" text="Kitchen" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <CheckBox fx:id="checkHeating" mnemonicParsing="false" text="Heating" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <children>
+                  <CheckBox fx:id="checkWC" mnemonicParsing="false" text="WC" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      <HBox alignment="CENTER" prefHeight="100.0">
+         <children>
+            <Button fx:id="btnCancel" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 0px; -fx-background-insets: 0px;" text="Cancel">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnApply" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-radius: 0px; -fx-background-insets: 0px;" text="Apply">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

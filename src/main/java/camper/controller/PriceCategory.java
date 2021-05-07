@@ -1,15 +1,17 @@
 package camper.controller;
 
 public enum PriceCategory {
-    BASIC("Basic"), STANDARD("Standard"), PREMIUM("Luxury");
+    BASIC("Basic", 1), STANDARD("Standard", 2), PREMIUM("Luxury", 3);
 
     public String name;
+    public int id;
 
-    PriceCategory(String name) {
+    PriceCategory(String name, int id) {
         this.name = name;
+        this.id = id;
     }
 
-    public PriceCategory getEnum(String name) {
+    public static PriceCategory getEnum(String name) {
         for (PriceCategory priceCategory : PriceCategory.values()) {
             if (priceCategory.name.equals(name)) {
                 return priceCategory;

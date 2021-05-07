@@ -9,9 +9,15 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.function.Predicate;
 
@@ -65,6 +71,38 @@ public class AutoCampersController {
 
         initializeChoiceBoxes();
         initializeFilters();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/UpdateAutoCamper.fxml"));
+            Scene scenePopup = new Scene(loader.load());
+
+            UpdateAutoCamperController controller = loader.getController();
+
+            viewTable.setRowFactory(v -> {
+                TableRow<AutoCamper> row = new TableRow<>();
+
+                row.setOnMouseClicked(e -> {
+                    if (e.getClickCount() == 2) {
+                        AutoCamper camper = row.getItem();
+
+                        if (camper != null) {
+                            Stage stage = new Stage();
+                            stage.setTitle("Update Auto Camper");
+                            stage.setScene(scenePopup);
+                            stage.initModality(Modality.APPLICATION_MODAL);
+                            stage.show();
+
+                            controller.btnCancel.setOnAction(event -> stage.close());
+                            controller.initializeFields(camper);
+                        }
+                    }
+                });
+
+                return row;
+            });
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }
 
     private void initializeChoiceBoxes() {
