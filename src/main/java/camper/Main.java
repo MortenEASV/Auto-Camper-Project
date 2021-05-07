@@ -45,7 +45,27 @@ public class Main extends Application {
         cacheCustomers = FXCollections.observableArrayList();
 
         try (Connection conn = DriverManager.getConnection(URL); Statement stmt = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery(sqlReservations);
+            ResultSet rs = stmt.executeQuery(sqlAutoCampers);
+
+            while (rs.next()) {
+                int id = rs.getInt("fld_AutoCamperID");
+                String price = rs.getString("fld_PriceType");
+                int seats = rs.getInt("fld_Seats");
+                int sleeps = rs.getInt("fld_Sleeps");
+                boolean wc = rs.getBoolean("fld_WC");
+                boolean kitchen = rs.getBoolean("fld_Kitchen");
+                double width = rs.getDouble("fld_Width");
+                double height = rs.getDouble("fld_Height");
+                double length = rs.getDouble("fld_Length");
+                String transmission = rs.getString("fld_TransmissionType");
+                String fuelType = rs.getString("fld_FuelType");
+
+                if (cacheReservations.containsKey(id)) {
+                    cacheAutoCampers.add(new AutoCamper(id, price, seats, sleeps, wc, kitchen, width, height, length, transmission, fuelType, cacheReservations.get(id)));
+                }
+            }
+
+            rs = stmt.executeQuery(sqlReservations);
 
             while (rs.next()) {
 
@@ -66,26 +86,6 @@ public class Main extends Application {
                 }
 
                 cacheReservations.get(id).add(new DateInterval(rs.getDate("fld_DateFrom").toLocalDate(), rs.getDate("fld_DateUntil").toLocalDate()));
-            }
-
-            rs = stmt.executeQuery(sqlAutoCampers);
-
-            while (rs.next()) {
-                int id = rs.getInt("fld_AutoCamperID");
-                String price = rs.getString("fld_PriceType");
-                int seats = rs.getInt("fld_Seats");
-                int sleeps = rs.getInt("fld_Sleeps");
-                boolean wc = rs.getBoolean("fld_WC");
-                boolean kitchen = rs.getBoolean("fld_Kitchen");
-                double width = rs.getDouble("fld_Width");
-                double height = rs.getDouble("fld_Height");
-                double length = rs.getDouble("fld_Length");
-                String transmission = rs.getString("fld_TransmissionType");
-                String fuelType = rs.getString("fld_FuelType");
-
-                if (cacheReservations.containsKey(id)) {
-                    cacheAutoCampers.add(new AutoCamper(id, price, seats, sleeps, wc, kitchen, width, height, length, transmission, fuelType, cacheReservations.get(id)));
-                }
             }
 
             //Customers
