@@ -3,7 +3,6 @@ package camper.controller;
 import camper.Main;
 import camper.model.AutoCamper;
 import camper.model.Customer;
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -41,7 +40,6 @@ public class CustomersController {
 
 
     public void initialize() throws IOException {
-
         paneDeleteCustomer = FXMLLoader.load(getClass().getResource("../fxml/DeleteCustomer.fxml"));
 
         colID.setCellValueFactory(new PropertyValueFactory<>("id"));
